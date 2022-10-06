@@ -39,8 +39,15 @@ public class PlayerController : MonoBehaviour
         //para que se mueva con wasd o joystick   // con esto creas la misma cantidad de impulso para todos
 
         //para la gasolina
-        gasolinaActual = gasolinaActual - 0.5f * Time.deltaTime;
+        gasolinaActual = gasolinaActual - 10f * Time.deltaTime;
         labelFuel.text = gasolinaActual.ToString("00") + " %";
+        
+        if(gasolinaActual <= 0f)
+        {
+            this.enabled = false;
+        }
+        
+         // se la gasolina se acaba -> desactivar el componente  (this.enabled = false)
 
 
     }
@@ -59,8 +66,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if (collision.gameObject.name == "gasolina")
+                                                          //como un sensor
+        if (collision.gameObject.tag == "gasolina")   
         {
             gasolinaActual += 10f;
             if (gasolinaActual > 100f)
@@ -84,8 +91,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void ClickEnBoton()
+    {
+        
+        Debug.Log("Ha cambiado");
+        //SceneManager.LoadScene(0);
 
-
+    }
 
 
 
