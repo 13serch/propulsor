@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject prefabParticles;
 
+    
+
     void Start()
     {
         gasolinaActual = 100f;
@@ -45,9 +47,10 @@ public class PlayerController : MonoBehaviour
         if(gasolinaActual <= 0f)
         {
             this.enabled = false;
+            
         }
         
-         // se la gasolina se acaba -> desactivar el componente  (this.enabled = false)
+         // si la gasolina se acaba -> desactivar el componente(el movimiento)  (this.enabled = false)
 
 
     }
@@ -76,12 +79,14 @@ public class PlayerController : MonoBehaviour
             }
             // este `if` para que no se pase de 100% la gasolina
 
-            
+            //reproducir sonido
+            collision.GetComponent<AudioSource>().Play();
+            collision.enabled = false;
+
             //crear particulas
             Instantiate(prefabParticles, collision.transform.position, collision.transform.rotation);
 
-           
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject, 0.2f);
             //destruirlo
 
                  //desactivarlo sería con:

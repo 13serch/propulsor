@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - gasolina
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - gasolina
   - Water
   - UI
   - 
